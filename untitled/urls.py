@@ -17,7 +17,14 @@ from django.http import HttpResponseRedirect
 from django.contrib import admin
 from django.urls import path, include
 
+from untitled import settings
+
 urlpatterns = [
     path('', admin.site.urls),
-    path('market/', include('market.urls'))
+    path('market/', include('market.urls')),
+    path('accounts/', include('allauth.urls'))
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
