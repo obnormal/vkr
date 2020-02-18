@@ -18,5 +18,5 @@ from market import views
 from django.urls import path
 
 urlpatterns = [
-    path('', views.hello, name='hello')
+    path('items/', views.item_list, name='item-list')
 ]
