@@ -18,9 +18,6 @@ class Item(models.Model):
 class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
-    def __str__(self):
-        pass
-
 
 class Order(models.Model):
     buyer = models.ForeignKey(settings.AUTH_USER_MODELS, on_delete=models.CASCADE)

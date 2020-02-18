@@ -17,12 +17,15 @@ from django.http import HttpResponseRedirect
 from django.contrib import admin
 from django.urls import path, include
 
-from untitled import settings
+from untitled import settings, views
+
+# from market import views
 
 urlpatterns = [
     path('', admin.site.urls),
     path('market/', include('market.urls')),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('accounts/profile/', views.user_page, name='user-page'),
 ]
 
 if settings.DEBUG:

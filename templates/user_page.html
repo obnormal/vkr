@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Hello {{ user_info.username }}
+    <p>Your order: </p> {% for order in orders %} <ul><li>{{ order }}</li></ul> {% endfor %}
+    -------------------------
+    <p> Total sum: {{ total_sum }} $</p>
+
+</body>
+</html>
