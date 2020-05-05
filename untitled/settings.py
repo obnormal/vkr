@@ -25,7 +25,7 @@ SECRET_KEY = 'ivd7e5+*wu9(a!f)*m8#%_2#p^)-e(w%1ws=ix!wyu*rz=d_v)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysterious-woodland-22056.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['vkr2020.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
