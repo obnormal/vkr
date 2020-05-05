@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from market.models import Order, Item
 
@@ -16,3 +16,7 @@ def user_page(request):
         'total_sum': total_sum
     }
     return render(request, 'user_page.html', context)
+
+
+def item_list(request):
+    return redirect('market/items/')

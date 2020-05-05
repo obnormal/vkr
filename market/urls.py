@@ -19,4 +19,5 @@ from django.urls import path
 
 urlpatterns = [
     path('items/', views.item_list, name='item-list'),
+    path('items/new/', views.add_item, name='new-item'),
 ]

@@ -15,17 +15,21 @@ Including another URLconf
 """
 from django.http import HttpResponseRedirect
 from django.contrib import admin
+# from django.shortcuts import redirect
 from django.urls import path, include
+# from two_factor.urls import urlpatterns as tf_urls
 
 from untitled import settings, views
 
 # from market import views
 
 urlpatterns = [
-    path('', admin.site.urls),
+    path('', views.item_list, name='item-list'),
     path('market/', include('market.urls')),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', views.user_page, name='user-page'),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('aa/', admin.site.urls),
 ]
 
 if settings.DEBUG:

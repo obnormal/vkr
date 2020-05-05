@@ -5,8 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+    <div><a href="{% url 'item-list' %}">Каталог</a></div>
     Hello {{ user_info.username }}
-    <p>Your order: </p> {% for order in orders %} <ul><li>{{ order }}</li></ul> {% endfor %}
+    <p>Your order: </p>
+    {% if orders %}
+        {% for order in orders %}
+            <ul><li>{{ order }}</li></ul>
+        {% endfor %}
+    {% else %}<p>Nothing</p>
+    {% endif %}
     -------------------------
     <p> Total sum: {{ total_sum }} $</p>
 
