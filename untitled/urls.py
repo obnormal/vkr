@@ -20,7 +20,7 @@ from django.urls import path, include
 # from two_factor.urls import urlpatterns as tf_urls
 
 from untitled import settings, views
-
+from django.conf.urls.static import static
 # from market import views
 
 urlpatterns = [
@@ -30,7 +30,7 @@ urlpatterns = [
     path('accounts/profile/', views.user_page, name='user-page'),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('aa/', admin.site.urls),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # if settings.DEBUG:
 #     import debug_toolbar
