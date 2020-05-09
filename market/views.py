@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Item
 from .forms import ItemForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import permission_required
 from django.http import HttpRequest, HttpResponse
 # Create your views here.
 
@@ -12,6 +13,7 @@ def item_list(request):
     }
     return render(request, 'item_list.html', context)
 
+@permission_required('market.add_item')
 def add_item(request):
     if request.method =='POST':
         form = ItemForm(request.POST)
