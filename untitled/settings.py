@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['vkr2020.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'market.apps.MarketConfig',
+    'pyup_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'django_otp.middleware.OTPMiddleware',
+    'csp.middleware.CSPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -151,10 +152,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-# TWO_FACTOR_PATCH_ADMIN = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_DEFAULT_HTTP_PROTOCOL ='https'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL ='https'
 ACCOUNT_SESSION_REMEMBER = None
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -180,7 +180,7 @@ if DEBUG:
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'testing@example.com'
 
-# SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT             = True
 SESSION_COOKIE_SECURE           = True
 CSRF_COOKIE_SECURE              = True
@@ -188,3 +188,13 @@ SECURE_HSTS_SECONDS             = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 SECURE_BROWSER_XSS_FILTER = True
+
+# ----------CSP directives---------- #
+
+CSP_DEFAULT_SRC = ("'self'", 'google.com')
+CSP_SCRIPT_SRC = ("'self'", 'google.com')
+CSP_IMG_SRC = ("'self'", 'google.com')
+CSP_OBJECT_SRC = ("'none'")
+CSP_MEDIA_SRC = ("'self'", 'youtube.com')
+CSP_FONT_SRC = ("'self'", 'google.com')
+CSP_STYLE_SRC = ("'self'", 'google.com')
