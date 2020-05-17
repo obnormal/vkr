@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from logging import INFO
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ivd7e5+*wu9(a!f)*m8#%_2#p^)-e(w%1ws=ix!wyu*rz=d_v)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['vkr2020.herokuapp.com', '127.0.0.1']
 
@@ -46,6 +48,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'admin_honeypot',
+
+    'automated_logging',
     # 'django_otp',
     # 'django_otp.plugins.otp_static',
     # 'django_otp.plugins.otp_totp',
@@ -61,9 +65,52 @@ MIDDLEWARE = [
     'csp.middleware.CSPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'automated_logging.middleware.AutomatedLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'untitled.urls'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+    'db': {
+        'level': 'INFO',
+        'class': 'automated_logging.handlers.DatabaseHandler',
+    },
+    'automated_logging': {
+        'level': 'INFO',
+        'handlers': ['db'],
+        'propagate': True,
+    },
+    'django': {
+        'level': 'INFO',
+        'handlers': ['db'],
+        'propagate': True,
+    },
+}
+
+AUTOMATED_LOGGING = {
+    'exclude': {'model': ['session', 'automated_logging', 'basehttp', 'contenttypes', 'migrations'],
+                'request': ['GET', 200],
+                'unspecified': []},
+    'modules': ['request', 'model', 'unspecified'],
+    'to_database': True,
+    'loglevel': {'model': INFO,
+                 'request': INFO},
+    'save_na': True,
+    'request': {
+      'query': False
+    }
+}
 
 TEMPLATES = [
     {
@@ -177,6 +224,7 @@ if DEBUG:
     EMAIL_HOST_PASSWORD = ''
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'testing@example.com'
+
 
 SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT             = True
