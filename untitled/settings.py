@@ -66,47 +66,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'untitled.urls'
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'root': {
-#         'handlers': ['console'],
-#         'level': 'WARNING',
-#     },
-#     'db': {
-#         'level': 'INFO',
-#         'class': 'automated_logging.handlers.DatabaseHandler',
-#     },
-#     'automated_logging': {
-#         'level': 'INFO',
-#         'handlers': ['db'],
-#         'propagate': True,
-#     },
-#     'django': {
-#         'level': 'INFO',
-#         'handlers': ['db'],
-#         'propagate': True,
-#     },
-# }
-
-AUTOMATED_LOGGING = {
-    'exclude': {'model': ['session', 'automated_logging', 'basehttp', 'contenttypes', 'migrations'],
-                'request': ['GET', 200],
-                'unspecified': []},
-    'modules': ['request', 'model', 'unspecified'],
-    'to_database': True,
-    'loglevel': {'model': INFO,
-                 'request': INFO},
-    'save_na': True,
-    'request': {
-        'query': False
-    }
-}
 
 TEMPLATES = [
     {
@@ -261,7 +220,7 @@ if DEBUG:
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'testing@example.com'
 
-SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
