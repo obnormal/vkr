@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ivd7e5+*wu9(a!f)*m8#%_2#p^)-e(w%1ws=ix!wyu*rz=d_v)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['vkr2020.herokuapp.com', '127.0.0.1']
 
@@ -194,7 +194,7 @@ AUTHENTICATION_BACKENDS = (
 )
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 ACCOUNT_SESSION_REMEMBER = None
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -220,23 +220,23 @@ ADMINS = [('admin', 'kamilgabdullin@gmail.com')]
 #     EMAIL_USE_TLS = False
 #     DEFAULT_FROM_EMAIL = 'testing@example.com'
 
-# CSRF_COOKIE_HTTPONLY = True
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_HSTS_SECONDS = 31536000
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-# SECURE_BROWSER_XSS_FILTER = True
+CSRF_COOKIE_HTTPONLY = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_BROWSER_XSS_FILTER = True
 
 # ----------CSP directives---------- #
 
-# CSP_DEFAULT_SRC = ("'self'", 'google.com')
-# CSP_SCRIPT_SRC = ("'self'", 'google.com')
-# CSP_IMG_SRC = ("'self'", 'google.com')
-# CSP_OBJECT_SRC = ("'none'")
-# CSP_MEDIA_SRC = ("'self'", 'youtube.com')
-# CSP_FONT_SRC = ("'self'", 'google.com')
-# CSP_STYLE_SRC = ("'self'", 'google.com')
-# CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
+CSP_DEFAULT_SRC = ("'self'", 'google.com')
+CSP_SCRIPT_SRC = ("'self'", 'google.com')
+CSP_IMG_SRC = ("'self'", 'google.com')
+CSP_OBJECT_SRC = ("'none'")
+CSP_MEDIA_SRC = ("'self'", 'youtube.com')
+CSP_FONT_SRC = ("'self'", 'google.com')
+CSP_STYLE_SRC = ("'self'", 'google.com')
+CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
