@@ -4,7 +4,7 @@
     <a href="{% url 'new-item' %}">Добавить товар</a>
     <h2 align="center"> Here is list of items </h2>
     {%  for item in items %}
-        <p align="center">{{ item }} - {{ item.description }}</p>
-        <p align="center">{{ item.price }}$</p>
+        <p align="center">Name and description: {{ item }} - {{ item.description }}</p>
+        <p align="center">Price: {{ item.price }}$</p>
     {%  endfor %}
 {% endblock content %}

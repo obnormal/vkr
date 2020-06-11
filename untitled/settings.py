@@ -72,45 +72,47 @@ ROOT_URLCONF = 'untitled.urls'
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'WARNING',
+    'handlers': {
+        'mail_admins': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': [],
+            'include_html': True,
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        }
     },
-    'db': {
-        'level': 'INFO',
-        'class': 'automated_logging.handlers.DatabaseHandler',
+    'loggers': {
+        'django.request': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO',
+        },
     },
-    'automated_logging': {
-        'level': 'INFO',
-        'handlers': ['db'],
-        'propagate': True,
-    },
-    'django': {
-        'level': 'INFO',
-        'handlers': ['db'],
-        'propagate': True,
-    },
-}
-
-AUTOMATED_LOGGING = {
-    'exclude': {'model': ['session', 'automated_logging', 'basehttp', 'contenttypes', 'migrations'],
-                'request': ['GET', 200],
-                'unspecified': []},
-    'modules': ['request', 'model', 'unspecified'],
-    'to_database': True,
-    'loglevel': {'model': INFO,
-                 'request': INFO},
-    'save_na': True,
-    'request': {
-      'query': False
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
     }
 }
+
 
 TEMPLATES = [
     {
@@ -199,7 +201,7 @@ AUTHENTICATION_BACKENDS = (
 )
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_DEFAULT_HTTP_PROTOCOL ='https'
+# ACCOUNT_DEFAULT_HTTP_PROTOCOL ='https'
 ACCOUNT_SESSION_REMEMBER = None
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -218,7 +220,7 @@ SITE_ID = 1
 ADMINS = [('admin','kamilgabdullin@gmail.com')]
 
 if DEBUG:
-    EMAIL_HOST = 'vkr2020.herokuapp.com'
+    EMAIL_HOST = '127.0.0.1'
     EMAIL_PORT = 2525
     EMAIL_HOST_USER = ''
     EMAIL_HOST_PASSWORD = ''
@@ -226,21 +228,21 @@ if DEBUG:
     DEFAULT_FROM_EMAIL = 'testing@example.com'
 
 
-SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT             = True
-SESSION_COOKIE_SECURE           = True
-CSRF_COOKIE_SECURE              = True
-SECURE_HSTS_SECONDS             = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_BROWSER_XSS_FILTER = True
+# SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT             = True
+# SESSION_COOKIE_SECURE           = True
+# CSRF_COOKIE_SECURE              = True
+# SECURE_HSTS_SECONDS             = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_BROWSER_XSS_FILTER = True
 
 # ----------CSP directives---------- #
 
-CSP_DEFAULT_SRC = ("'self'", 'google.com')
-CSP_SCRIPT_SRC = ("'self'", 'google.com')
-CSP_IMG_SRC = ("'self'", 'google.com')
-CSP_OBJECT_SRC = ("'none'")
-CSP_MEDIA_SRC = ("'self'", 'youtube.com')
-CSP_FONT_SRC = ("'self'", 'google.com')
-CSP_STYLE_SRC = ("'self'", 'google.com')
+# CSP_DEFAULT_SRC = ("'self'", 'google.com')
+# CSP_SCRIPT_SRC = ("'self'", 'google.com')
+# CSP_IMG_SRC = ("'self'", 'google.com')
+# CSP_OBJECT_SRC = ("'none'")
+# CSP_MEDIA_SRC = ("'self'", 'youtube.com')
+# CSP_FONT_SRC = ("'self'", 'google.com')
+# CSP_STYLE_SRC = ("'self'", 'google.com')
