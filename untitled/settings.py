@@ -13,10 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from logging import INFO
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -25,10 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ivd7e5+*wu9(a!f)*m8#%_2#p^)-e(w%1ws=ix!wyu*rz=d_v)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['vkr2020.herokuapp.com', '127.0.0.1']
-
 
 # Application definition
 
@@ -69,49 +66,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'untitled.urls'
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'DEBUG',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'filters': [],
-            'include_html': True,
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['console', 'mail_admins'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-            'level': 'INFO',
-        },
-    },
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        },
-    }
-}
 
 
 TEMPLATES = [
@@ -187,6 +141,49 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'WARNING',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': [],
+            'include_html': True,
+            'formatter': 'simple',
+        },
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -201,7 +198,7 @@ AUTHENTICATION_BACKENDS = (
 )
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_DEFAULT_HTTP_PROTOCOL ='https'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 ACCOUNT_SESSION_REMEMBER = None
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -217,32 +214,33 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 SITE_ID = 1
 
-ADMINS = [('admin','kamilgabdullin@gmail.com')]
+ADMINS = [('admin', 'kamilgabdullin@gmail.com')]
 
-if DEBUG:
-    EMAIL_HOST = '127.0.0.1'
-    EMAIL_PORT = 2525
-    EMAIL_HOST_USER = ''
-    EMAIL_HOST_PASSWORD = ''
-    EMAIL_USE_TLS = False
-    DEFAULT_FROM_EMAIL = 'testing@example.com'
+# if DEBUG:
+#     EMAIL_HOST = 'vkr2020.herokuapp.com'
+#     EMAIL_PORT = 2525
+#     EMAIL_HOST_USER = ''
+#     EMAIL_HOST_PASSWORD = ''
+#     EMAIL_USE_TLS = False
+#     DEFAULT_FROM_EMAIL = 'testing@example.com'
 
-
-# SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT             = True
-# SESSION_COOKIE_SECURE           = True
-# CSRF_COOKIE_SECURE              = True
-# SECURE_HSTS_SECONDS             = 31536000
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-# SECURE_BROWSER_XSS_FILTER = True
+CSRF_COOKIE_HTTPONLY = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_BROWSER_XSS_FILTER = True
 
 # ----------CSP directives---------- #
 
-# CSP_DEFAULT_SRC = ("'self'", 'google.com')
-# CSP_SCRIPT_SRC = ("'self'", 'google.com')
-# CSP_IMG_SRC = ("'self'", 'google.com')
-# CSP_OBJECT_SRC = ("'none'")
-# CSP_MEDIA_SRC = ("'self'", 'youtube.com')
-# CSP_FONT_SRC = ("'self'", 'google.com')
-# CSP_STYLE_SRC = ("'self'", 'google.com')
+CSP_DEFAULT_SRC = ("'self'", 'google.com')
+CSP_SCRIPT_SRC = ("'self'", 'google.com')
+CSP_IMG_SRC = ("'self'", 'google.com')
+CSP_OBJECT_SRC = ("'none'")
+CSP_MEDIA_SRC = ("'self'", 'youtube.com')
+CSP_FONT_SRC = ("'self'", 'google.com')
+CSP_STYLE_SRC = ("'self'", 'google.com')
+CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
