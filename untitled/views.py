@@ -1,11 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from market.models import Order, Item
 
-
+@login_required
 def user_page(request):
-
     orders = Item.objects.filter(orderitem__order__buyer_id=request.user.id).all()
     total_sum = 0
     for order in orders:
