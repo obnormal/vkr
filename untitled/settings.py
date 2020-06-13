@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'csp.middleware.CSPMiddleware',
+    # 'csp.middleware.CSPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'automated_logging.middleware.AutomatedLoggingMiddleware',
@@ -238,14 +238,14 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
 
     """ ----------CSP directives---------- """
-
-    CSP_DEFAULT_SRC = ("'self'", 'google.com')
-    CSP_SCRIPT_SRC = ("'self'", 'google.com')
-    CSP_IMG_SRC = ("'self'", 'google.com')
-    CSP_OBJECT_SRC = ("'none'")
-    CSP_MEDIA_SRC = ("'self'", 'youtube.com')
-    CSP_FONT_SRC = ("'self'", 'google.com')
-    CSP_STYLE_SRC = ("'self'", 'google.com')
-    CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
+    #
+    # CSP_DEFAULT_SRC = ("'self'", 'google.com')
+    # CSP_SCRIPT_SRC = ("'self'", 'google.com')
+    # CSP_IMG_SRC = ("'self'", 'google.com')
+    # CSP_OBJECT_SRC = ("'none'")
+    # CSP_MEDIA_SRC = ("'self'", 'youtube.com')
+    # CSP_FONT_SRC = ("'self'", 'google.com')
+    # CSP_STYLE_SRC = ("'self'", 'google.com')
+    # CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
 
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
