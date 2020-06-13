@@ -1,3 +1,5 @@
+{#<div  style="float: left;">  </div>#}
+{% include 'market/base_menu.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-    <div><a href="{% url 'item-list' %}">Каталог</a></div>
+<div style="margin-left: 50px; float: left;">
     Hello {{ user_info.username }}
     <p>Your order: </p>
     {% if orders %}
@@ -16,6 +18,6 @@
     {% endif %}
     -------------------------
     <p> Total sum: {{ total_sum }} $</p>
-
+</div>
 </body>
 </html>

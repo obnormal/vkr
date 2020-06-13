@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
     'admin_honeypot',
 
-    'automated_logging',
+    # 'automated_logging',
     # 'django_otp',
     # 'django_otp.plugins.otp_static',
     # 'django_otp.plugins.otp_totp',
@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'csp.middleware.CSPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'automated_logging.middleware.AutomatedLoggingMiddleware',
+    # 'automated_logging.middleware.AutomatedLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'untitled.urls'
@@ -191,6 +191,9 @@ LOGGING = {
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 AUTH_USER_MODELS = 'auth.User'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -198,7 +201,6 @@ AUTHENTICATION_BACKENDS = (
 )
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 ACCOUNT_SESSION_REMEMBER = None
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -224,23 +226,26 @@ ADMINS = [('admin', 'kamilgabdullin@gmail.com')]
 #     EMAIL_USE_TLS = False
 #     DEFAULT_FROM_EMAIL = 'testing@example.com'
 
-CSRF_COOKIE_HTTPONLY = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_BROWSER_XSS_FILTER = True
+if not DEBUG:
+    CSRF_COOKIE_HTTPONLY = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_BROWSER_XSS_FILTER = True
 
-# ----------CSP directives---------- #
+    """ ----------CSP directives---------- """
 
-CSP_DEFAULT_SRC = ("'self'", 'google.com')
-CSP_SCRIPT_SRC = ("'self'", 'google.com')
-CSP_IMG_SRC = ("'self'", 'google.com')
-CSP_OBJECT_SRC = ("'none'")
-CSP_MEDIA_SRC = ("'self'", 'youtube.com')
-CSP_FONT_SRC = ("'self'", 'google.com')
-CSP_STYLE_SRC = ("'self'", 'google.com')
-CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
+    CSP_DEFAULT_SRC = ("'self'", 'google.com')
+    CSP_SCRIPT_SRC = ("'self'", 'google.com')
+    CSP_IMG_SRC = ("'self'", 'google.com')
+    CSP_OBJECT_SRC = ("'none'")
+    CSP_MEDIA_SRC = ("'self'", 'youtube.com')
+    CSP_FONT_SRC = ("'self'", 'google.com')
+    CSP_STYLE_SRC = ("'self'", 'google.com')
+    CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
+
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'

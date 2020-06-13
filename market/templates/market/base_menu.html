@@ -1,0 +1,25 @@
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'market/base_menu.css' %}">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VKR2020</title>
+</head>
+<body>
+{#    <div class="auth-block">  </div>#}
+
+    <div class="menu">
+        {% include 'base.html' %}
+
+              <a style="float: left" href="{% url 'item-list' %}">Каталог</a><br>
+
+              <a style="float: left" href="{% url 'user-page' %}">Профиль</a>
+
+    </div>
+
+</body>
+</html>

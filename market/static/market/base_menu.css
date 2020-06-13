@@ -1,0 +1,10 @@
+.menu{
+    float: left;
+    width: 15%;
+    height: 100%;
+}
+
+.auth-block{
+    width: 20%;
+    float: left;
+}

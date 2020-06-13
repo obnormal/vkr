@@ -13,17 +13,16 @@ def item_list(request):
     context = {
         'items': Item.objects.all()
     }
-    return render(request, 'item_list.html', context)
+    return render(request, 'market/item_list.html', context)
 
 
 # @login_required
 # @permission_required('market.add_item', raise_exception=True)
 def add_item(request):
     if request.method =='POST':
-        form = ItemForm(request.POST)
+        form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-
             return redirect('item-list')
     form = ItemForm()
-    return render(request, 'new_item.html', {'form': form})
+    return render(request, 'market/new_item.html', {'form': form})

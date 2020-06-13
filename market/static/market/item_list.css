@@ -1,0 +1,36 @@
+h2 {
+    text-align: center;
+}
+
+#add-item{
+    float: right;
+}
+
+section{
+    display: flex;
+    flex-wrap: wrap;
+}
+article{
+    margin: 20px 40px 20px 40px;
+    /*flex: 1;*/
+    align-content: center;
+    text-align: center;
+}
+
+img{
+    padding-bottom: 10px;
+    width: 230px;
+    max-width: 230px;
+    max-height: 230px;
+
+}
+
+p{
+    text-align: center;
+    width: 230px;
+}
+
+#image{
+    width: 230px;
+    height: 230px;
+}

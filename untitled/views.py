@@ -15,7 +15,7 @@ def user_page(request):
         'orders': orders,
         'total_sum': total_sum
     }
-    return render(request, 'user_page.html', context)
+    return render(request, 'market/user_page.html', context)
 
 
 def item_list(request):
