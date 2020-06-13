@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ivd7e5+*wu9(a!f)*m8#%_2#p^)-e(w%1ws=ix!wyu*rz=d_v)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['vkr2020.herokuapp.com', '127.0.0.1']
 
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'csp.middleware.CSPMiddleware',
+    # 'csp.middleware.CSPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'automated_logging.middleware.AutomatedLoggingMiddleware',
@@ -128,11 +128,6 @@ LANGUAGES = (
     ('en', 'English'),
 )
 
-#LOGIN_URL = 'allauth.account.forms.LoginForm'
-
-# this one is optional
-# LOGIN_REDIRECT_URL = 'two_factor:login'
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -187,12 +182,17 @@ LOGGING = {
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 AUTH_USER_MODELS = 'auth.User'
 AUTHENTICATION_BACKENDS = (
