@@ -15,6 +15,11 @@ def item_list(request):
     }
     return render(request, 'market/item_list.html', context)
 
+def item_view(request):
+    context = {
+        'item': request.item
+    }
+    return render(request, 'market/item_page.html', context)
 
 # @login_required
 # @permission_required('market.add_item', raise_exception=True)

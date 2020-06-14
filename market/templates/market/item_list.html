@@ -11,9 +11,14 @@
     <section>
     {%  for item in items %}
         <article>
-        <div id="image"><img src="{{ item.image.url }}" alt="This is pic of item"></div>
-        <p><b>Name:</b> {{ item }} <br><b>Description:</b> {{ item.description }}</p>
-        <p><b>Price:</b> {{ item.price }}$</p>
+        <div id="image">
+            <img src="{{ item.image.url }}" onclick="window.location.href='{% url 'user-page' %}'" alt="This is pic of item">
+        </div>
+        <p id="item-text-info">
+            <span id="item-name">{{ item }}</span><br>
+            <span id="item-description">{{ item.description }}</span><br><br>
+            <span id="item-price">{{ item.price }} $</span>
+        </p>
         </article>
     {%  endfor %}
     </section>
