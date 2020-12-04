@@ -43,14 +43,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.vk',
 
     'admin_honeypot',
-
-    # 'automated_logging',
-    # 'django_otp',
-    # 'django_otp.plugins.otp_static',
-    # 'django_otp.plugins.otp_totp',
-    # 'two_factor',
 ]
 
 MIDDLEWARE = [
@@ -184,14 +179,14 @@ LOGGING = {
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
 
 AUTH_USER_MODELS = 'auth.User'
 AUTHENTICATION_BACKENDS = (
@@ -225,18 +220,18 @@ ADMINS = [('admin', 'kamilgabdullin@gmail.com')]
 #     EMAIL_USE_TLS = False
 #     DEFAULT_FROM_EMAIL = 'testing@example.com'
 
-if not DEBUG:
-    CSRF_COOKIE_HTTPONLY = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_BROWSER_XSS_FILTER = True
+# if not DEBUG:
+#     CSRF_COOKIE_HTTPONLY = True
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#     SECURE_SSL_REDIRECT = True
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+#     SECURE_HSTS_SECONDS = 31536000
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#     SECURE_HSTS_PRELOAD = True
+#     SECURE_BROWSER_XSS_FILTER = True
 
-    """ ----------CSP directives---------- """
+    # """ ----------CSP directives---------- """
     #
     # CSP_DEFAULT_SRC = ("'self'", 'google.com')
     # CSP_SCRIPT_SRC = ("'self'", 'google.com')
@@ -247,4 +242,4 @@ if not DEBUG:
     # CSP_STYLE_SRC = ("'self'", 'google.com')
     # CSP_FRAME_ANCESTORS = ("'self'", 'https://google.com')
 
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+    # ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
